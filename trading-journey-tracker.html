@@ -1,0 +1,615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Intraday Trading Journey Tracker</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .active-tab { border-bottom: 2px solid #2563eb; color: #2563eb; }
+        .glass { background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 min-h-screen font-sans antialiased">
+
+    <!-- Top Navigation Header -->
+    <header class="border-b border-slate-200 bg-white sticky top-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center gap-4">
+            <div class="flex items-center gap-3">
+                <div class="bg-blue-600 p-2 rounded-lg text-white shadow-sm">
+                    <i class="fa-solid fa-chart-line text-xl"></i>
+                </div>
+                <div>
+                    <h1 class="font-bold text-xl tracking-wide text-slate-900">DAILY INTRADAY TRADING HUB</h1>
+                    <p class="text-xs text-slate-500">Minutes/Hours Holds • Technical Analysis • Progress Tracker</p>
+                </div>
+            </div>
+
+            <!-- Global Overall Progress Bar -->
+            <div class="w-full md:w-72 bg-slate-200 rounded-full h-4 p-0.5 border border-slate-300">
+                <div id="overallProgressBar" class="bg-gradient-to-r from-blue-600 to-indigo-600 h-full rounded-full transition-all duration-500" style="width: 0%"></div>
+            </div>
+            <div class="text-xs text-slate-600 font-mono">Progress: <span id="overallProgressPercent" class="text-blue-600 font-bold">0%</span> Complete</div>
+        </div>
+    </header>
+
+    <!-- Main Workspace Container -->
+    <main class="max-w-7xl mx-auto px-4 py-6">
+        
+        <!-- Navigation Tabs -->
+        <nav class="flex border-b border-slate-200 mb-6 gap-6 font-medium text-sm text-slate-500">
+            <button onclick="switchTab('roadmap')" id="tab-roadmap" class="pb-3 active-tab flex items-center gap-2"><i class="fa-solid fa-map"></i> Learning Roadmap</button>
+            <button onclick="switchTab('stack')" id="tab-stack" class="pb-3 flex items-center gap-2"><i class="fa-solid fa-layer-group"></i> Software Stack & Knowledge</button>
+            <button onclick="switchTab('journal')" id="tab-journal" class="pb-3 flex items-center gap-2"><i class="fa-solid fa-book-open"></i> Trade Journal</button>
+            <button onclick="switchTab('analytics')" id="tab-analytics" class="pb-3 flex items-center gap-2"><i class="fa-solid fa-chart-pie"></i> Visual Analytics</button>
+        </nav>
+
+        <!-- TAB 1: ROADMAP MODULE -->
+        <section id="sec-roadmap" class="space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="roadmapContainer">
+                <!-- Phases inserted via JavaScript -->
+            </div>
+        </section>
+
+        <!-- TAB 2: SOFTWARE STACK COMPARISON -->
+        <section id="sec-stack" class="hidden space-y-6">
+            <div class="bg-white border border-slate-200 rounded-xl p-6 shadow-sm">
+                <h2 class="text-lg font-bold mb-4 text-blue-600"><i class="fa-solid fa-desktop mr-2"></i>Active Trading Software & Verified Resources</h2>
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left text-sm text-slate-700">
+                        <thead class="bg-slate-100 text-slate-600 uppercase text-xs">
+                            <tr>
+                                <th class="p-3">Platform / Resource</th>
+                                <th class="p-3">Category</th>
+                                <th class="p-3">Core Specialization & Details</th>
+                                <th class="p-3">Knowledge Gained</th>
+                                <th class="p-3">Verified Link</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-200">
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Investopedia / Babypips</td>
+                                <td class="p-3"><span class="bg-emerald-100 text-emerald-700 font-medium px-2 py-1 rounded text-xs">Fundamentals</span></td>
+                                <td class="p-3">Basic market mechanics, order types, and risk management math.</td>
+                                <td class="p-3 text-xs text-slate-600">Mastering market vs. limit orders, bids vs. asks, and position sizing.</td>
+                                <td class="p-3"><a href="https://www.investopedia.com/financial-terms-dict-4769738" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Investopedia Dictionary <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Bookmap Education Portal</td>
+                                <td class="p-3"><span class="bg-orange-100 text-orange-700 font-medium px-2 py-1 rounded text-xs">Heatmap / L2</span></td>
+                                <td class="p-3">Visualizing resting limit orders and absorption in real-time.</td>
+                                <td class="p-3 text-xs text-slate-600">Spotting institutional liquidity blocks, spoofing, and limit wall absorption.</td>
+                                <td class="p-3"><a href="https://bookmap.com/education/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Bookmap Courses <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Aggr.tech</td>
+                                <td class="p-3"><span class="bg-purple-100 text-purple-700 font-medium px-2 py-1 rounded text-xs">Aggregated T&S</span></td>
+                                <td class="p-3">Multi-exchange cross-platform trade aggregation & sound alerts.</td>
+                                <td class="p-3 text-xs text-slate-600">Identifying market-wide liquidation spikes and cross-exchange momentum.</td>
+                                <td class="p-3"><a href="https://aggr.tech/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Aggr Web App <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">ExoCharts Help Portal</td>
+                                <td class="p-3"><span class="bg-blue-100 text-blue-700 font-medium px-2 py-1 rounded text-xs">Footprint / Delta</span></td>
+                                <td class="p-3">Order Flow Footprints, CVD, and Volume Profile tools.</td>
+                                <td class="p-3 text-xs text-slate-600">Reading intra-candle buy/sell pressure and identifying delta divergences.</td>
+                                <td class="p-3"><a href="https://exocharts.com/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">ExoCharts Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Tiger Trade Portal <span class="text-amber-600 text-[10px] font-normal">(verify crypto support before relying on it)</span></td>
+                                <td class="p-3"><span class="bg-indigo-100 text-indigo-700 font-medium px-2 py-1 rounded text-xs">Execution Terminal</span></td>
+                                <td class="p-3">Single-click DOM trading ladder — note this platform is primarily a stocks/options broker, so confirm its crypto capabilities match your needs before building workflow around it.</td>
+                                <td class="p-3 text-xs text-slate-600">Low-latency order submission, hotkey speed, and position queue tracking.</td>
+                                <td class="p-3"><a href="https://www.itiger.com/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Tiger Trade Web <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Tealstreet Terminal</td>
+                                <td class="p-3"><span class="bg-teal-100 text-teal-700 font-medium px-2 py-1 rounded text-xs">Execution Terminal</span></td>
+                                <td class="p-3">Web & desktop terminal for active crypto intraday trading.</td>
+                                <td class="p-3 text-xs text-slate-600">Automating stop-loss/take-profit bracket orders during fast market swings.</td>
+                                <td class="p-3"><a href="https://docs.tealstreet.io/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Tealstreet Docs <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Coinglass Analytics</td>
+                                <td class="p-3"><span class="bg-cyan-100 text-cyan-700 font-medium px-2 py-1 rounded text-xs">Derivatives Analytics</span></td>
+                                <td class="p-3">Market-wide Open Interest, Funding Rates, & Liquidation Heatmaps.</td>
+                                <td class="p-3 text-xs text-slate-600">Gauging overall market leverage, positioning imbalances, and liquidation zones.</td>
+                                <td class="p-3"><a href="https://www.coinglass.com/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Coinglass Dashboard <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: TRADE JOURNAL -->
+        <section id="sec-journal" class="hidden space-y-6">
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Form -->
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-4 shadow-sm">
+                    <h2 class="font-bold text-blue-600 text-md"><i class="fa-solid fa-pen-to-square mr-2"></i>Log Trade / Strategy Insight</h2>
+                    <div>
+                        <label class="text-xs text-slate-500 font-medium block mb-1">Asset & Setup</label>
+                        <input id="jAsset" type="text" placeholder="e.g., BTC/USDT - Liquidity Absorption" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div>
+                            <label class="text-xs text-slate-500 font-medium block mb-1">Order Flow Indicator</label>
+                            <select id="jType" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
+                                <option>Fundamental Order Check</option>
+                                <option>Bookmap Heatmap</option>
+                                <option>Footprint CVD Divergence</option>
+                                <option>VWAP Band Mean Reversion</option>
+                                <option>Liquidation Sweep</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="text-xs text-slate-500 font-medium block mb-1">Outcome</label>
+                            <select id="jResult" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
+                                <option value="Win">Win (+2 R)</option>
+                                <option value="Loss">Loss (-1 R)</option>
+                                <option value="Observation">Observation / Paper</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label class="text-xs text-slate-500 font-medium block mb-1">Statistical Context & Knowledge Applied</label>
+                        <textarea id="jNotes" rows="3" placeholder="Describe the DOM activity, delta divergence, and what you learned..." class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500"></textarea>
+                    </div>
+                    <button onclick="saveJournalEntry()" class="w-full bg-blue-600 hover:bg-blue-700 font-semibold text-sm text-white py-2 rounded transition shadow-sm">Save Entry</button>
+                </div>
+
+                <!-- List -->
+                <div class="lg:col-span-2 bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <h2 class="font-bold text-slate-800 text-md mb-4"><i class="fa-solid fa-list-check mr-2"></i>Logged Observations</h2>
+                    <div id="journalList" class="space-y-3 max-h-96 overflow-y-auto pr-2">
+                        <p class="text-xs text-slate-400 italic">No entries logged yet. Add your first trade observation above.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 4: VISUAL ANALYTICS -->
+        <section id="sec-analytics" class="hidden space-y-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-700 mb-4"><i class="fa-solid fa-chart-line mr-2"></i>Phase Completion Status</h3>
+                    <canvas id="progressChart" class="max-h-64"></canvas>
+                </div>
+                <div class="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                    <h3 class="font-bold text-sm text-slate-700 mb-4"><i class="fa-solid fa-bullseye mr-2"></i>Setup Performance Distribution</h3>
+                    <canvas id="journalChart" class="max-h-64"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <script>
+        // Roadmap Data featuring explicit Per-Task Resources
+        const roadmapData = [
+            {
+                title: "Phase 0: Trading & Market Fundamentals (~4-5 weeks @ 3hrs/wk)",
+                desc: "Master basic market vocabulary, order mechanics, buyers vs. sellers, and basic risk math. Spread across weekly 1.5hr study blocks — no rush.",
+                knowledgeGoal: "Gain total comfort with standard trading terminology before moving into chart-based technical analysis.",
+                resources: [
+                    { name: "Investopedia Trading Terms", url: "https://www.investopedia.com/financial-terms-dict-4769738" },
+                    { name: "Babypips School of Trading", url: "https://www.babypips.com/learn/forex" }
+                ],
+                tasks: [
+                    { 
+                        id: "p0_1", 
+                        name: "Learn Market Orders vs. Limit Orders", 
+                        goal: "Understand why Limit Orders sit passively in line, while Market Orders jump the line and move prices.",
+                        resName: "Investopedia: Market vs Limit Orders",
+                        resUrl: "https://www.investopedia.com/investing/basics-trading-market-limit-orders/"
+                    },
+                    { 
+                        id: "p0_2", 
+                        name: "Master Bids, Asks, and the Spread", 
+                        goal: "Learn how the Bid (highest buyer) and Ask (lowest seller) create the active market price.",
+                        resName: "Babypips: Bids, Asks & Spreads",
+                        resUrl: "https://www.babypips.com/learn/forex/bid-ask-spread"
+                    },
+                    { 
+                        id: "p0_3", 
+                        name: "Understand Shorting vs. Longing", 
+                        goal: "Grasp how going long profits on price rises, while shorting profits when prices fall.",
+                        resName: "Investopedia: Short Selling",
+                        resUrl: "https://www.investopedia.com/terms/s/shortselling.asp"
+                    },
+                    { 
+                        id: "p0_4", 
+                        name: "Learn Basic Risk-to-Reward (R:R) Math", 
+                        goal: "Understand how to calculate position size so you risk a fixed $ amount per trade.",
+                        resName: "Babypips: Position Sizing",
+                        resUrl: "https://www.babypips.com/learn/forex/position-sizing"
+                    },
+                    { 
+                        id: "p0_5", 
+                        name: "Secure your exchange accounts & understand counterparty risk", 
+                        goal: "Set up hardware-key or app-based 2FA, use API keys with trading-only (no withdrawal) permissions, and understand that funds on an exchange are exposed to that exchange's solvency risk.",
+                        resName: "Investopedia: Crypto Exchange Security",
+                        resUrl: "https://www.investopedia.com/best-crypto-exchanges-5071855"
+                    },
+                    { 
+                        id: "p0_6", 
+                        name: "Learn how trading is taxed and what records to keep", 
+                        goal: "Understand that frequent trading usually creates a tax-reporting obligation (rules vary a lot by country) and start logging trades from day one so you're not reconstructing history later.",
+                        resName: "Investopedia: Crypto Tax Basics",
+                        resUrl: "https://www.investopedia.com/tech/taxes-and-crypto/"
+                    },
+                    { 
+                        id: "p0_7", 
+                        name: "Calculate how fees and slippage erode an intraday trading edge", 
+                        goal: "Run the math on your target trade size: exchange fees + spread + expected slippage per round-trip, multiplied by expected trade frequency, to see the minimum edge you need just to break even.",
+                        resName: "Investopedia: Trading Costs & Slippage",
+                        resUrl: "https://www.investopedia.com/terms/s/slippage.asp"
+                    }
+                ]
+            },
+            {
+                title: "Phase 1: Technical Analysis for Intraday Trading (~5-6 weeks @ 3hrs/wk)",
+                desc: "For minutes-to-hours holds, chart structure (levels, volume, trend context) does more work than tick-by-tick order flow. Build that foundation first; order flow gets added later as a lighter entry-timing layer, not the core edge.",
+                knowledgeGoal: "Read a chart across multiple timeframes and identify where price is likely to react, without needing to watch the raw order book.",
+                resources: [
+                    { name: "TradingView Education", url: "https://www.tradingview.com/education/" },
+                    { name: "Bookmap Education Courses", url: "https://bookmap.com/education/" }
+                ],
+                tasks: [
+                    { 
+                        id: "p1_1", 
+                        name: "Learn candlestick basics and multi-timeframe context (e.g. daily/4h for bias, 15m/5m for entries)", 
+                        goal: "Understand how to check a higher timeframe for overall trend/bias before looking for an entry on a lower timeframe — this is the backbone of daily intraday trading.",
+                        resName: "TradingView: Multiple Time Frame Analysis",
+                        resUrl: "https://www.tradingview.com/education/"
+                    },
+                    { 
+                        id: "p1_2", 
+                        name: "Learn to mark key support/resistance levels and prior swing highs/lows", 
+                        goal: "Identify the price levels where reactions are statistically more likely, so entries/exits aren't arbitrary.",
+                        resName: "Babypips: Support and Resistance",
+                        resUrl: "https://www.babypips.com/learn/forex/support-and-resistance-levels"
+                    },
+                    { 
+                        id: "p1_3", 
+                        name: "Learn Volume Profile and VWAP as intraday reference points", 
+                        goal: "Use volume-based levels (value area, POC, VWAP) to gauge fair value and likely reaction zones during the session.",
+                        resName: "TradingView: Volume Profile Guide",
+                        resUrl: "https://www.tradingview.com/support/solutions/43000629253-volume-profile/"
+                    },
+                    { 
+                        id: "p1_4", 
+                        name: "(Supplementary) Learn DOM, Cumulative Volume Delta & liquidation basics as an entry-timing layer", 
+                        goal: "A lighter pass on order flow — not the core strategy, but useful for fine-tuning entries once your chart-based bias and level are already set.",
+                        resName: "Bookmap: Order Book & DOM Mechanics",
+                        resUrl: "https://bookmap.com/blog/level-2-vs-level-3-data/"
+                    }
+                ]
+            },
+            {
+                title: "Phase 2: Terminal, Alerts & Software Setup (~2-3 weeks @ 3hrs/wk)",
+                desc: "Configure platforms for order book visuals and — critically for a 3hrs/wk schedule — set up alerts so the market notifies you instead of you needing to watch it continuously.",
+                knowledgeGoal: "Master the technical environment needed to process real-time market data without UI lag.",
+                resources: [
+                    { name: "Aggr.tech Live Feed", url: "https://aggr.tech/" },
+                    { name: "Tiger Trade Portal", url: "https://www.itiger.com/" },
+                    { name: "Tealstreet Docs", url: "https://docs.tealstreet.io/" }
+                ],
+                tasks: [
+                    { 
+                        id: "p2_1", 
+                        name: "Set up Aggr.tech for multi-exchange live liquidation monitoring", 
+                        goal: "Learn how to filter audio cues and visual alerts for high-volume trade sweeps across Binance and Bybit.",
+                        resName: "Aggr.tech: Official Repository & Guide",
+                        resUrl: "https://aggr.tech/"
+                    },
+                    { 
+                        id: "p2_2", 
+                        name: "Configure Bookmap or ExoCharts for heatmaps and footprint profiling", 
+                        goal: "Master setting up footprint charts, delta bars, and historical order depth heatmaps.",
+                        resName: "ExoCharts: Setup Video Guides",
+                        resUrl: "https://exocharts.com/"
+                    },
+                    { 
+                        id: "p2_3", 
+                        name: "Connect TigerTrade or Tealstreet to Crypto Testnet/API keys", 
+                        goal: "Understand secure API permissions (read/write without withdrawal access) and low-latency endpoint routing.",
+                        resName: "Tealstreet: Connecting API Keys",
+                        resUrl: "https://docs.tealstreet.io/"
+                    },
+                    { 
+                        id: "p2_4", 
+                        name: "Configure single-click execution hotkeys and hard risk stops", 
+                        goal: "Develop muscle memory for instant order entry, cancellation, and automated stop-loss placement.",
+                        resName: "TigerTrade: Execution Setup",
+                        resUrl: "https://www.itiger.com/"
+                    },
+                    { 
+                        id: "p2_5", 
+                        name: "Set up TradingView price, volume & funding-rate alerts (priority for a 3hrs/wk schedule)", 
+                        goal: "Build a watchlist of alert conditions on your key assets so you get pinged when something worth reviewing happens, instead of needing to watch continuously.",
+                        resName: "TradingView: Alerts Guide",
+                        resUrl: "https://www.tradingview.com/support/solutions/43000520149-about-alerts/"
+                    }
+                ]
+            },
+            {
+                title: "Phase 3: Visual Statistical Strategy Development (~8-10 weeks @ 3hrs/wk)",
+                desc: "Formulate non-coding, rule-based short-intraday strategies (minutes-to-hours holds, not seconds) using visual statistical indicators — this timeframe survives checking in periodically rather than watching live.",
+                knowledgeGoal: "Translate visual data patterns into statistically backtested, high-probability entry/exit rules.",
+                resources: [
+                    { name: "TradingView Platform", url: "https://www.tradingview.com/" },
+                    { name: "Coinglass Analytics", url: "https://www.coinglass.com/" }
+                ],
+                tasks: [
+                    { 
+                        id: "p3_1", 
+                        name: "Define a VWAP Standard Deviation Reversion rulebook", 
+                        goal: "Understand mean-reversion statistics using VWAP bands and volume-weighted price spreads.",
+                        resName: "Investopedia: VWAP Indicator Guide",
+                        resUrl: "https://www.investopedia.com/terms/v/vwap.asp"
+                    },
+                    { 
+                        id: "p3_2", 
+                        name: "Build a Liquidity Sweep Strategy (trading absorbed heatmap walls)", 
+                        goal: "Identify high-probability reversal setups where market orders drain liquidity into resting limit walls.",
+                        resName: "Bookmap: Order Absorption Setup",
+                        resUrl: "https://bookmap.com/education/"
+                    },
+                    { 
+                        id: "p3_3", 
+                        name: "Manually replay and log ~30 historical footprint scenarios (roughly 3-4/week)", 
+                        goal: "Build visual pattern recognition for absorption, exhaustion, and delta divergence setups. Scaled down from a full 100-scenario drill to fit a 3hrs/wk schedule — quality of review matters more than volume here.",
+                        resName: "TradingView: Bar Replay Feature",
+                        resUrl: "https://www.tradingview.com/"
+                    },
+                    { 
+                        id: "p3_4", 
+                        name: "Calculate baseline win-rate and Risk:Reward ratios on paper", 
+                        goal: "Quantify trade setup expectancy and verify positive statistical edge before allocating real capital ($50–$100 micro start).",
+                        resName: "Babypips: Risk & Expectancy Calculator",
+                        resUrl: "https://www.babypips.com/learn/forex/position-sizing"
+                    }
+                ]
+            },
+            {
+                title: "Phase 4: Daily Trading Routine & Discipline (ongoing)",
+                desc: "Two separate time budgets from here on: your 3hrs/wk learning block continues (deeper review, refining rules), PLUS a short daily operating routine (~15-30 min: morning scan, midday alert check, evening log). Only start once Phase 3's paper-traded win-rate and R:R shows a positive edge AFTER fees and slippage. Use micro-capital you can fully afford to lose.",
+                knowledgeGoal: "Develop the discipline to check in daily without needing to trade daily — and to measure real execution costs against your paper results.",
+                resources: [
+                    { name: "ExoCharts Platform", url: "https://exocharts.com/" }
+                ],
+                tasks: [
+                    { 
+                        id: "p4_0",
+                        name: "Build a fixed daily routine: morning scan → alert checks → evening 5-min log",
+                        goal: "Checking in daily is the goal, not trading daily. Most days should produce zero trades — you're scanning for your specific setup, not looking for a reason to click buy.",
+                        resName: "Trade Journaling Guide",
+                        resUrl: "https://www.investopedia.com/articles/trading/07/trading_journal.asp"
+                    },
+                    { 
+                        id: "p4_1", 
+                        name: "Take live micro-lot trades only when your Phase 3 rules trigger ($50-$100 total risk capital)", 
+                        goal: "Train trade execution under real market conditions with minimal financial risk. Expect an uneven pace — some weeks 3-4 valid setups, other weeks none. Forcing trades to feel productive is how accounts bleed out.",
+                        resName: "Tealstreet: Live Order Execution",
+                        resUrl: "https://docs.tealstreet.io/"
+                    },
+                    { 
+                        id: "p4_2", 
+                        name: "Track execution slippage (expected fill price vs. realized fill price)", 
+                        goal: "Measure how much of your paper-traded edge survives real fees, spread, and fill delay.",
+                        resName: "Investopedia: Slippage Defined",
+                        resUrl: "https://www.investopedia.com/terms/s/slippage.asp"
+                    },
+                    { 
+                        id: "p4_3", 
+                        name: "Enforce strict position sizing rules (< 1% account risk per trade)", 
+                        goal: "Internalize strict risk controls to prevent catastrophic drawdowns during market swings.",
+                        resName: "Babypips: Risk Management Rules",
+                        resUrl: "https://www.babypips.com/learn/forex/risk-management"
+                    },
+                    { 
+                        id: "p4_4", 
+                        name: "Daily 5-min log + one weekly deeper review (part of your 3hrs/wk block)", 
+                        goal: "Quick daily notes keep context fresh; the weekly session is where you actually look for patterns in what's working and what isn't.",
+                        resName: "Trade Journaling Guide",
+                        resUrl: "https://www.investopedia.com/articles/trading/07/trading_journal.asp"
+                    }
+                ]
+            }
+        ];
+
+        let state = {
+            completedTasks: JSON.parse(localStorage.getItem('hft_completed_tasks')) || {},
+            journal: JSON.parse(localStorage.getItem('hft_journal')) || []
+        };
+
+        // Initialize Web App
+        document.addEventListener('DOMContentLoaded', () => {
+            renderRoadmap();
+            updateProgress();
+            renderJournal();
+            initCharts();
+        });
+
+        function switchTab(tabName) {
+            ['roadmap', 'stack', 'journal', 'analytics'].forEach(t => {
+                document.getElementById(`sec-${t}`).classList.add('hidden');
+                document.getElementById(`tab-${t}`).classList.remove('active-tab');
+            });
+            document.getElementById(`sec-${tabName}`).classList.remove('hidden');
+            document.getElementById(`tab-${tabName}`).classList.add('active-tab');
+            if(tabName === 'analytics') updateCharts();
+        }
+
+        function renderRoadmap() {
+            const container = document.getElementById('roadmapContainer');
+            container.innerHTML = roadmapData.map((phase, pIdx) => `
+                <div class="bg-white border border-slate-200 rounded-xl p-5 space-y-4 shadow-sm">
+                    <h3 class="font-bold text-slate-800 border-b border-slate-100 pb-2 flex items-center justify-between">
+                        <span>${phase.title}</span>
+                        <span id="phase-badge-${pIdx}" class="text-xs bg-slate-100 px-2 py-0.5 rounded text-slate-600 font-medium">0%</span>
+                    </h3>
+                    <p class="text-xs text-slate-500">${phase.desc}</p>
+
+                    <!-- Section Knowledge Goal -->
+                    <div class="bg-indigo-50 border border-indigo-100 rounded p-2.5 text-xs">
+                        <span class="font-semibold text-indigo-800 block mb-0.5"><i class="fa-solid fa-graduation-cap mr-1"></i> Phase Knowledge Goal:</span>
+                        <span class="text-indigo-950">${phase.knowledgeGoal}</span>
+                    </div>
+                    
+                    <!-- Direct Phase Resource Links -->
+                    <div class="bg-blue-50 border border-blue-100 rounded p-2 text-xs space-y-1">
+                        <span class="font-semibold text-blue-700 block">Verified Phase Portals:</span>
+                        <div class="flex flex-wrap gap-2">
+                            ${phase.resources.map(r => `
+                                <a href="${r.url}" target="_blank" class="text-blue-600 hover:text-blue-800 underline font-medium inline-flex items-center gap-1">
+                                    ${r.name} <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            `).join(' • ')}
+                        </div>
+                    </div>
+
+                    <!-- Tasks with Individual Knowledge Goals and Dedicated Links -->
+                    <div class="space-y-3 pt-1">
+                        ${phase.tasks.map(t => `
+                            <div class="p-3 bg-slate-50 rounded border border-slate-200/70 hover:bg-slate-100/80 transition space-y-1.5">
+                                <label class="flex items-start gap-3 cursor-pointer">
+                                    <input type="checkbox" id="${t.id}" onchange="toggleTask('${t.id}')" ${state.completedTasks[t.id] ? 'checked' : ''} class="mt-0.5 rounded border-slate-300 text-blue-600 focus:ring-0">
+                                    <span class="text-sm font-semibold text-slate-800 ${state.completedTasks[t.id] ? 'line-through text-slate-400' : ''}">${t.name}</span>
+                                </label>
+                                <p class="text-xs text-slate-500 pl-6"><strong class="text-slate-600">Knowledge Gained:</strong> ${t.goal}</p>
+                                <div class="pl-6 pt-0.5">
+                                    <a href="${t.resUrl}" target="_blank" class="inline-flex items-center gap-1 text-[11px] font-medium text-blue-600 bg-blue-100/60 hover:bg-blue-200/80 px-2 py-0.5 rounded transition">
+                                        <i class="fa-solid fa-book-bookmark text-[10px]"></i> ${t.resName} <i class="fa-solid fa-arrow-up-right-from-square text-[9px]"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function toggleTask(id) {
+            state.completedTasks[id] = !state.completedTasks[id];
+            localStorage.setItem('hft_completed_tasks', JSON.stringify(state.completedTasks));
+            renderRoadmap();
+            updateProgress();
+        }
+
+        function updateProgress() {
+            let totalTasks = 0;
+            let completed = 0;
+
+            roadmapData.forEach((phase, idx) => {
+                let pTotal = phase.tasks.length;
+                let pComp = phase.tasks.filter(t => state.completedTasks[t.id]).length;
+                totalTasks += pTotal;
+                completed += pComp;
+
+                let pPercent = Math.round((pComp / pTotal) * 100);
+                const badge = document.getElementById(`phase-badge-${idx}`);
+                if (badge) badge.innerText = `${pPercent}%`;
+            });
+
+            let overall = Math.round((completed / totalTasks) * 100) || 0;
+            document.getElementById('overallProgressBar').style.width = `${overall}%`;
+            document.getElementById('overallProgressPercent').innerText = `${overall}%`;
+        }
+
+        function saveJournalEntry() {
+            const asset = document.getElementById('jAsset').value;
+            const type = document.getElementById('jType').value;
+            const result = document.getElementById('jResult').value;
+            const notes = document.getElementById('jNotes').value;
+
+            if(!asset) return alert('Please input an Asset & Setup name.');
+
+            const entry = { id: Date.now(), asset, type, result, notes, date: new Date().toLocaleDateString() };
+            state.journal.unshift(entry);
+            localStorage.setItem('hft_journal', JSON.stringify(state.journal));
+
+            document.getElementById('jAsset').value = '';
+            document.getElementById('jNotes').value = '';
+            renderJournal();
+        }
+
+        function renderJournal() {
+            const list = document.getElementById('journalList');
+            if(state.journal.length === 0) {
+                list.innerHTML = `<p class="text-xs text-slate-400 italic">No entries logged yet. Add your first trade observation above.</p>`;
+                return;
+            }
+
+            list.innerHTML = state.journal.map(j => `
+                <div class="bg-slate-50 border border-slate-200 p-3 rounded-lg flex flex-col gap-1">
+                    <div class="flex justify-between items-center text-xs">
+                        <span class="font-bold text-slate-800">${j.asset}</span>
+                        <span class="text-slate-400">${j.date}</span>
+                    </div>
+                    <div class="flex items-center gap-2 text-xs">
+                        <span class="bg-slate-200 text-slate-700 px-2 py-0.5 rounded font-medium">${j.type}</span>
+                        <span class="${j.result === 'Win' ? 'text-emerald-600' : j.result === 'Loss' ? 'text-red-600' : 'text-blue-600'} font-bold">${j.result}</span>
+                    </div>
+                    <p class="text-xs text-slate-600 mt-1">${j.notes}</p>
+                </div>
+            `).join('');
+        }
+
+        // Charts
+        let chartInstance1 = null;
+        let chartInstance2 = null;
+
+        function initCharts() {
+            const ctx1 = document.getElementById('progressChart').getContext('2d');
+            chartInstance1 = new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: ['Phase 0', 'Phase 1', 'Phase 2', 'Phase 3', 'Phase 4'],
+                    datasets: [{
+                        label: 'Completion %',
+                        data: [0, 0, 0, 0, 0],
+                        backgroundColor: '#2563eb'
+                    }]
+                },
+                options: { scales: { y: { beginAtZero: true, max: 100 } }, plugins: { legend: { display: false } } }
+            });
+
+            const ctx2 = document.getElementById('journalChart').getContext('2d');
+            chartInstance2 = new Chart(ctx2, {
+                type: 'doughnut',
+                data: {
+                    labels: ['Win', 'Loss', 'Observation'],
+                    datasets: [{
+                        data: [0, 0, 0],
+                        backgroundColor: ['#10b981', '#ef4444', '#2563eb']
+                    }]
+                },
+                options: { plugins: { legend: { position: 'bottom' } } }
+            });
+        }
+
+        function updateCharts() {
+            if(!chartInstance1 || !chartInstance2) return;
+
+            const pData = roadmapData.map(phase => {
+                let comp = phase.tasks.filter(t => state.completedTasks[t.id]).length;
+                return Math.round((comp / phase.tasks.length) * 100);
+            });
+            chartInstance1.data.datasets[0].data = pData;
+            chartInstance1.update();
+
+            const wins = state.journal.filter(j => j.result === 'Win').length;
+            const losses = state.journal.filter(j => j.result === 'Loss').length;
+            const obs = state.journal.filter(j => j.result === 'Observation').length;
+
+            chartInstance2.data.datasets[0].data = [wins, losses, obs];
+            chartInstance2.update();
+        }
+    </script>
+</body>
+</html>
