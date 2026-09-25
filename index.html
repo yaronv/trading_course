@@ -77,32 +77,18 @@
                                 <td class="p-3"><a href="https://www.investopedia.com/financial-term-dictionary-4769738" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Investopedia Dictionary <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
                             </tr>
                             <tr class="hover:bg-slate-50">
-                                <td class="p-3 font-semibold text-slate-900">Bookmap Education Portal</td>
-                                <td class="p-3"><span class="bg-orange-100 text-orange-700 font-medium px-2 py-1 rounded text-xs">Heatmap / L2</span></td>
-                                <td class="p-3">Visualizing resting limit orders and absorption in real-time.</td>
-                                <td class="p-3 text-xs text-slate-600">Spotting institutional liquidity blocks, spoofing, and limit wall absorption.</td>
-                                <td class="p-3"><a href="https://bookmap.com/education/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Bookmap Courses <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="p-3 font-semibold text-slate-900">Aggr.tech</td>
-                                <td class="p-3"><span class="bg-purple-100 text-purple-700 font-medium px-2 py-1 rounded text-xs">Aggregated T&S</span></td>
-                                <td class="p-3">Multi-exchange cross-platform trade aggregation & sound alerts.</td>
-                                <td class="p-3 text-xs text-slate-600">Identifying market-wide liquidation spikes and cross-exchange momentum.</td>
-                                <td class="p-3"><a href="https://aggr.trade/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Aggr Web App <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
-                                <td class="p-3 font-semibold text-slate-900">ExoCharts Help Portal</td>
-                                <td class="p-3"><span class="bg-blue-100 text-blue-700 font-medium px-2 py-1 rounded text-xs">Footprint / Delta</span></td>
-                                <td class="p-3">Order Flow Footprints, CVD, and Volume Profile tools.</td>
-                                <td class="p-3 text-xs text-slate-600">Reading intra-candle buy/sell pressure and identifying delta divergences.</td>
-                                <td class="p-3"><a href="https://exocharts.com/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">ExoCharts Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
-                            </tr>
-                            <tr class="hover:bg-slate-50">
                                 <td class="p-3 font-semibold text-slate-900">Tealstreet Terminal</td>
                                 <td class="p-3"><span class="bg-teal-100 text-teal-700 font-medium px-2 py-1 rounded text-xs">Execution Terminal</span></td>
                                 <td class="p-3">Web & desktop terminal for active crypto intraday trading.</td>
-                                <td class="p-3 text-xs text-slate-600">Automating stop-loss/take-profit bracket orders during fast market swings.</td>
+                                <td class="p-3 text-xs text-slate-600">Automating bracket orders, tracking CVD, and visualizing DOM risk.</td>
                                 <td class="p-3"><a href="https://docs.tealstreet.io/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Tealstreet Docs <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
+                            </tr>
+                            <tr class="hover:bg-slate-50">
+                                <td class="p-3 font-semibold text-slate-900">Binance Futures</td>
+                                <td class="p-3"><span class="bg-blue-100 text-blue-700 font-medium px-2 py-1 rounded text-xs">Liquidity Engine</span></td>
+                                <td class="p-3">High-volume central exchange execution routing.</td>
+                                <td class="p-3 text-xs text-slate-600">Managing API permissions, whitelisted IP security, and testnet practice environments.</td>
+                                <td class="p-3"><a href="https://www.binance.com/" target="_blank" class="text-blue-600 font-medium underline hover:text-blue-800">Binance Portal <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i></a></td>
                             </tr>
                             <tr class="hover:bg-slate-50">
                                 <td class="p-3 font-semibold text-slate-900">Coinglass Analytics</td>
@@ -125,16 +111,17 @@
                     <h2 class="font-bold text-blue-600 text-md"><i class="fa-solid fa-pen-to-square mr-2"></i>Log Trade / Strategy Insight</h2>
                     <div>
                         <label class="text-xs text-slate-500 font-medium block mb-1">Asset & Setup</label>
-                        <input id="jAsset" type="text" placeholder="e.g., BTC/USDT - Liquidity Absorption" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
+                        <input id="jAsset" type="text" placeholder="e.g., BTC/USDT - VWAP Pullback" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
                     </div>
                     <div class="grid grid-cols-2 gap-2">
                         <div>
                             <label class="text-xs text-slate-500 font-medium block mb-1">Order Flow Indicator</label>
                             <select id="jType" class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500">
                                 <option>Fundamental Order Check</option>
-                                <option>Bookmap Heatmap</option>
-                                <option>Footprint CVD Divergence</option>
+                                <option>Tealstreet Risk Profile Check</option>
+                                <option>DOM Limit Absorption</option>
                                 <option>VWAP Band Mean Reversion</option>
+                                <option>CVD Divergence</option>
                                 <option>Liquidation Sweep</option>
                             </select>
                         </div>
@@ -149,7 +136,7 @@
                     </div>
                     <div>
                         <label class="text-xs text-slate-500 font-medium block mb-1">Statistical Context & Knowledge Applied</label>
-                        <textarea id="jNotes" rows="3" placeholder="Describe the DOM activity, delta divergence, and what you learned..." class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500"></textarea>
+                        <textarea id="jNotes" rows="3" placeholder="Describe the DOM activity, CVD divergence, or VWAP interaction and what you learned..." class="w-full bg-slate-50 border border-slate-300 rounded p-2 text-sm text-slate-800 focus:outline-none focus:border-blue-500"></textarea>
                     </div>
                     <button onclick="saveJournalEntry()" class="w-full bg-blue-600 hover:bg-blue-700 font-semibold text-sm text-white py-2 rounded transition shadow-sm">Save Entry</button>
                 </div>
@@ -181,7 +168,6 @@
     </main>
 
     <script>
-        // Roadmap Data featuring explicit Per-Task Resources
         const roadmapData = [
             {
                 title: "Phase 0: Trading & Market Fundamentals (~4-5 weeks @ 3hrs/wk)",
@@ -283,132 +269,150 @@
                 ]
             },
             {
-                title: "Phase 2: Terminal, Alerts & Software Setup (~2-3 weeks @ 3hrs/wk)",
-                desc: "Configure platforms for order book visuals and — critically for a 3hrs/wk schedule — set up alerts so the market notifies you instead of you needing to watch it continuously.",
-                knowledgeGoal: "Master the technical environment needed to process real-time market data without UI lag.",
+                title: "Phase 2: Essential Volume & Order Flow Indicators (~3-4 weeks @ 3hrs/wk)",
+                desc: "Traditional lagging indicators are too slow for intraday crypto trading. Master these four volume and order-flow tools to track real capital positioning.",
+                knowledgeGoal: "Understand where real money is entering/exiting the market and how aggressively it is behaving to confirm structural levels.",
                 resources: [
-                    { name: "Aggr.trade Live Feed", url: "https://aggr.trade/" },
-                    { name: "Tealstreet Docs", url: "https://docs.tealstreet.io/" }
+                    { name: "Tealstreet Docs", url: "https://docs.tealstreet.io/docs/trade/terminal" },
+                    { name: "Coinglass Open Interest", url: "https://www.coinglass.com/" }
                 ],
                 tasks: [
                     { 
                         id: "p2_1", 
-                        name: "Set up Aggr.tech for multi-exchange live liquidation monitoring", 
-                        goal: "Learn how to filter audio cues and visual alerts for high-volume trade sweeps across Binance and Bybit.",
-                        resName: "Aggr.tech: Official Repository & Guide",
-                        resUrl: "https://aggr.trade/"
+                        name: "Master VWAP & Standard Deviation Bands", 
+                        goal: "Use VWAP as a directional bias filter (price > VWAP = long bias) and a structural magnet for mean-reversion trades when price deviates too far on declining volume.",
+                        resName: "Investopedia: VWAP",
+                        resUrl: "https://www.investopedia.com/terms/v/vwap.asp"
                     },
                     { 
                         id: "p2_2", 
-                        name: "Configure Bookmap or ExoCharts for heatmaps and footprint profiling", 
-                        goal: "Master setting up footprint charts, delta bars, and historical order depth heatmaps.",
-                        resName: "ExoCharts: Setup Video Guides",
-                        resUrl: "https://exocharts.com/"
+                        name: "Map Liquidity with Volume Profile", 
+                        goal: "Identify High Volume Nodes (HVNs) for support/resistance and the Point of Control (POC) as a primary take-profit target in consolidations.",
+                        resName: "TradingView: Volume Profile",
+                        resUrl: "https://www.tradingview.com/support/solutions/43000502040-volume-profile-indicators-basic-concepts/"
                     },
                     { 
                         id: "p2_3", 
-                        name: "Connect Tealstreet to Crypto Testnet/API keys", 
-                        goal: "Understand secure API permissions (read/write without withdrawal access) and low-latency endpoint routing.",
-                        resName: "Tealstreet: Connecting API Keys",
+                        name: "Read Aggression via Cumulative Volume Delta (CVD)", 
+                        goal: "Spot bearish/bullish CVD divergences at key levels to identify when aggressive buying/selling is exhausted and being absorbed by passive limit orders.",
+                        resName: "Tealstreet: CVD Indicator",
                         resUrl: "https://docs.tealstreet.io/"
                     },
                     { 
                         id: "p2_4", 
-                        name: "Configure single-click execution hotkeys and hard risk stops", 
-                        goal: "Develop muscle memory for instant order entry, cancellation, and automated stop-loss placement.",
-                        resName: "Tealstreet: Terminal & Hotkeys",
-                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
-                    },
-                    { 
-                        id: "p2_5", 
-                        name: "Set up TradingView price, volume & funding-rate alerts (priority for a 3hrs/wk schedule)", 
-                        goal: "Build a watchlist of alert conditions on your key assets so you get pinged when something worth reviewing happens, instead of needing to watch continuously.",
-                        resName: "TradingView: Alerts Guide",
-                        resUrl: "https://www.tradingview.com/support/solutions/43000520149-about-alerts/"
+                        name: "Gauge Market Commitment with Open Interest (OI)", 
+                        goal: "Pair OI with price action to distinguish between organic trend support (rising price + rising OI) and liquidation-driven spikes (rising price + falling OI).",
+                        resName: "Coinglass: Open Interest Chart",
+                        resUrl: "https://www.coinglass.com/pro/i/openInterest"
                     }
                 ]
             },
             {
-                title: "Phase 3: Visual Statistical Strategy Development (~8-10 weeks @ 3hrs/wk)",
-                desc: "Formulate non-coding, rule-based short-intraday strategies (minutes-to-hours holds, not seconds) using visual statistical indicators — this timeframe survives checking in periodically rather than watching live.",
-                knowledgeGoal: "Translate visual data patterns into statistically backtested, high-probability entry/exit rules.",
+                title: "Phase 3: Binance & Tealstreet Configuration (~2-3 weeks @ 3hrs/wk)",
+                desc: "Securely connect your Binance account to the Tealstreet terminal and customize the workspace for intraday order execution without UI lag.",
+                knowledgeGoal: "Master API security, terminal customization, and hotkey muscle memory using paper trading before risking capital.",
                 resources: [
-                    { name: "TradingView Platform", url: "https://www.tradingview.com/" },
-                    { name: "Coinglass Analytics", url: "https://www.coinglass.com/" }
+                    { name: "Binance API Setup Guide", url: "https://docs.tealstreet.io/docs/connect/binance" },
+                    { name: "Tealstreet Terminal Layouts", url: "https://docs.tealstreet.io/docs/trade/terminal" }
                 ],
                 tasks: [
                     { 
                         id: "p3_1", 
-                        name: "Define a VWAP Standard Deviation Reversion rulebook", 
-                        goal: "Understand mean-reversion statistics using VWAP bands and volume-weighted price spreads.",
-                        resName: "Investopedia: VWAP Indicator Guide",
-                        resUrl: "https://www.investopedia.com/terms/v/vwap.asp"
+                        name: "Generate Secure Binance API Keys", 
+                        goal: "Create a Binance API key with 'Enable Futures' selected and no other permissions. Ensure you paste the Whitelisted IP Addresses from Tealstreet to restrict access.",
+                        resName: "Tealstreet: Binance Connection",
+                        resUrl: "https://docs.tealstreet.io/docs/connect/binance"
                     },
                     { 
                         id: "p3_2", 
-                        name: "Build a Liquidity Sweep Strategy (trading absorbed heatmap walls)", 
-                        goal: "Identify high-probability reversal setups where market orders drain liquidity into resting limit walls.",
-                        resName: "Bookmap: Order Absorption Setup",
-                        resUrl: "https://bookmap.com/education/"
+                        name: "Link API to Tealstreet and Optimize UI", 
+                        goal: "Toggle off unused Tealstreet modules to lower the resource demand of the terminal and potentially improve rendering performance.",
+                        resName: "Tealstreet: Terminal Settings",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
                     },
                     { 
                         id: "p3_3", 
-                        name: "Manually replay and log ~30 historical footprint scenarios (roughly 3-4/week)", 
-                        goal: "Build visual pattern recognition for absorption, exhaustion, and delta divergence setups. Scaled down from a full 100-scenario drill to fit a 3hrs/wk schedule — quality of review matters more than volume here.",
-                        resName: "TradingView: Bar Replay Feature",
-                        resUrl: "https://www.tradingview.com/"
+                        name: "Configure Order Button Sizes for Micro-Budget", 
+                        goal: "Adjust the 6 preset order size buttons in the 'Place Order' window to reflect your specific $50–$100 starting balance.",
+                        resName: "Tealstreet: Order Sizing",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
                     },
                     { 
                         id: "p3_4", 
-                        name: "Calculate baseline win-rate and Risk:Reward ratios on paper", 
-                        goal: "Quantify trade setup expectancy and verify positive statistical edge before allocating real capital ($50–$100 micro start).",
-                        resName: "Babypips: Risk & Expectancy Calculator",
-                        resUrl: "https://www.babypips.com/learn/forex/what-is-position-sizing"
+                        name: "Set Up Testnet / Practice Environment", 
+                        goal: "Enable 'Show Testnet Exchanges / Markets' in Tealstreet general settings to practice limit chasers and hotkeys in real-time without financial risk.",
+                        resName: "Tealstreet: Testnet Support",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
                     }
                 ]
             },
             {
-                title: "Phase 4: Daily Trading Routine & Discipline (ongoing)",
-                desc: "Two separate time budgets from here on: your 3hrs/wk learning block continues (deeper review, refining rules), PLUS a short daily operating routine (~15-30 min: morning scan, midday alert check, evening log). Only start once Phase 3's paper-traded win-rate and R:R shows a positive edge AFTER fees and slippage. Use micro-capital you can fully afford to lose.",
-                knowledgeGoal: "Develop the discipline to check in daily without needing to trade daily — and to measure real execution costs against your paper results.",
+                title: "Phase 4: Simulated Strategy Development (~8-10 weeks @ 3hrs/wk)",
+                desc: "Practice executing intraday (minutes to hours) setups using your quantitative order flow knowledge on the Binance Testnet via Tealstreet.",
+                knowledgeGoal: "Validate a positive statistical edge and fluid execution mechanics purely through paper trading and risk profile analysis.",
                 resources: [
-                    { name: "ExoCharts Platform", url: "https://exocharts.com/" }
+                    { name: "Tealstreet Risk Profile", url: "https://docs.tealstreet.io/docs/trade/terminal" },
+                    { name: "Binance Futures Testnet", url: "https://testnet.binancefuture.com/" }
                 ],
                 tasks: [
                     { 
-                        id: "p4_0",
-                        name: "Build a fixed daily routine: morning scan → alert checks → evening 5-min log",
-                        goal: "Checking in daily is the goal, not trading daily. Most days should produce zero trades — you're scanning for your specific setup, not looking for a reason to click buy.",
-                        resName: "Trade Journaling Guide",
-                        resUrl: "https://fxopen.com/blog/en/what-is-a-trading-journal-and-how-traders-keep-one/"
-                    },
-                    { 
                         id: "p4_1", 
-                        name: "Take live micro-lot trades only when your Phase 3 rules trigger ($50-$100 total risk capital)", 
-                        goal: "Train trade execution under real market conditions with minimal financial risk. Expect an uneven pace — some weeks 3-4 valid setups, other weeks none. Forcing trades to feel productive is how accounts bleed out.",
-                        resName: "Tealstreet: Live Order Execution",
-                        resUrl: "https://docs.tealstreet.io/"
+                        name: "Execute 30 Simulated Intraday Trades", 
+                        goal: "Use Binance Testnet via Tealstreet to execute 30 structured setups spanning minutes to hours, applying VWAP, CVD, and OI analysis to entries.",
+                        resName: "Tealstreet: Terminal",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
                     },
                     { 
                         id: "p4_2", 
-                        name: "Track execution slippage (expected fill price vs. realized fill price)", 
-                        goal: "Measure how much of your paper-traded edge survives real fees, spread, and fill delay.",
-                        resName: "Investopedia: Slippage Defined",
-                        resUrl: "https://www.investopedia.com/terms/s/slippage.asp"
+                        name: "Master the Tealstreet Risk Profile Module", 
+                        goal: "Use the built-in Risk Profile module before every paper trade to calculate potential profits, losses, and exact balance impacts based on resting orders.",
+                        resName: "Tealstreet: Risk Profile Docs",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
                     },
                     { 
                         id: "p4_3", 
-                        name: "Enforce strict position sizing rules (< 1% account risk per trade)", 
-                        goal: "Internalize strict risk controls to prevent catastrophic drawdowns during market swings.",
-                        resName: "Babypips: Risk Management Rules",
-                        resUrl: "https://www.babypips.com/learn/forex/risk-management-explained"
+                        name: "Log Simulator Results and Calculate Edge", 
+                        goal: "Record all 30 simulated trades in the journal tab, verifying that your R:R ratio remains positive over an extended sample size before going live.",
+                        resName: "Trade Journal Data",
+                        resUrl: "#"
+                    }
+                ]
+            },
+            {
+                title: "Phase 5: Small Budget Transition & Execution (ongoing)",
+                desc: "Shift from the simulator to live Binance Futures execution using a strictly capped micro-budget to experience real slippage and psychological factors.",
+                knowledgeGoal: "Execute live trades while maintaining the exact mechanical discipline and risk parameters established in the simulator.",
+                resources: [
+                    { name: "Tealstreet Terminal", url: "https://docs.tealstreet.io/docs/trade/terminal" }
+                ],
+                tasks: [
+                    { 
+                        id: "p5_0",
+                        name: "Fund Binance Futures with Micro-Capital",
+                        goal: "Deposit only the predetermined practice budget ($50–$100) into the live Binance Futures wallet, ensuring it is capital you are fully prepared to lose.",
+                        resName: "Binance Funding Guide",
+                        resUrl: "https://www.binance.com/en/support/faq"
                     },
                     { 
-                        id: "p4_4", 
-                        name: "Daily 5-min log + one weekly deeper review (part of your 3hrs/wk block)", 
-                        goal: "Quick daily notes keep context fresh; the weekly session is where you actually look for patterns in what's working and what isn't.",
-                        resName: "Trade Journaling Guide",
-                        resUrl: "https://fxopen.com/blog/en/what-is-a-trading-journal-and-how-traders-keep-one/"
+                        id: "p5_1", 
+                        name: "Enforce the 1% Absolute Risk Rule", 
+                        goal: "Utilize the Tealstreet Risk Profile to ensure that no single intraday setup risks more than 1% of your micro-budget upon stop-loss activation.",
+                        resName: "Tealstreet: Risk Profile",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
+                    },
+                    { 
+                        id: "p5_2", 
+                        name: "Monitor Real Slippage vs. Simulated Fills", 
+                        goal: "Compare your live Binance entry fills against your paper trading data to understand the true cost of market orders and liquidity absorption.",
+                        resName: "Investopedia: Slippage",
+                        resUrl: "https://www.investopedia.com/terms/s/slippage.asp"
+                    },
+                    { 
+                        id: "p5_3", 
+                        name: "Daily Routine utilizing Tealstreet Workspaces", 
+                        goal: "Export and save your finalized Tealstreet workspace to maintain a consistent terminal layout during daily post-session reviews.",
+                        resName: "Tealstreet: Workspaces",
+                        resUrl: "https://docs.tealstreet.io/docs/trade/terminal"
                     }
                 ]
             }
@@ -552,7 +556,6 @@
             `).join('');
         }
 
-        // Charts
         let chartInstance1 = null;
         let chartInstance2 = null;
 
@@ -561,10 +564,10 @@
             chartInstance1 = new Chart(ctx1, {
                 type: 'bar',
                 data: {
-                    labels: ['Phase 0', 'Phase 1', 'Phase 2', 'Phase 3', 'Phase 4'],
+                    labels: ['Phase 0', 'Phase 1', 'Phase 2', 'Phase 3', 'Phase 4', 'Phase 5'],
                     datasets: [{
                         label: 'Completion %',
-                        data: [0, 0, 0, 0, 0],
+                        data: [0, 0, 0, 0, 0, 0],
                         backgroundColor: '#2563eb'
                     }]
                 },
